@@ -9,9 +9,6 @@ type Person struct {
 	firstName string
 	lastName  string
 }
-type Dog struct {
-	name string
-}
 
 func (p Person) GetID() string {
 	return p.id
