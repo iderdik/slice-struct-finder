@@ -1,7 +1,7 @@
 package finder_test
 
 import (
-	. "github.com/user/searchtest/finder"
+	. "github.com/iderdik/slice-struct-finder/finder"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -16,7 +16,7 @@ type Dog struct {
 	name string
 }
 
-func (p Person) GetID() string {
+func (p Person) GetKey() string {
 	return p.id
 }
 
@@ -42,23 +42,23 @@ var _ = Describe("Finder", func() {
 	Describe("Searching a valid slice", func() {
 
 		It("should find Persons that exist", func() {
-			person, err := FindByID(&people, "007")
+			person, err := FindByKey(&people, "007")
 
 			Expect(person.(Person).firstName).To(Equal("James"))
 			Expect(err).NotTo(HaveOccurred())
 		})
 
 		It("should not find Persons that don't exist", func() {
-			_, err := FindByID(&people, "42")
+			_, err := FindByKey(&people, "42")
 
-			Expect(err).Should(MatchError("ID not found"))
+			Expect(err).Should(MatchError("Key not found"))
 		})
 	})
 
 	Describe("Searching an invalid slice", func() {
 
 		It("should find Persons that exist", func() {
-			_, err := FindByID(&dogs, "Lassie")
+			_, err := FindByKey(&dogs, "Lassie")
 
 			Expect(err).To(HaveOccurred())
 		})

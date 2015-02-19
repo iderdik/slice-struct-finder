@@ -10,7 +10,7 @@ type Person struct {
 	lastName  string
 }
 
-func (p Person) GetID() string {
+func (p Person) GetKey() string {
 	return p.id
 }
 
@@ -25,4 +25,4 @@ if person, err := FindByID(&people, "007"); err== nil {
 }
 ```
 
-Note: Make sure you provide a `GetID() string` method for the struct you'd like to make searchable.
+Note: Make sure you provide a `GetKey() string` method for the struct you'd like to make searchable.
